@@ -1,0 +1,42 @@
+---
+  # Price History Config Parameters
+  price_history_db: sqlite:///../production_dbs/pricehistory.db
+  ticker_list:
+
+    # Index ETF
+    - voo
+    - vtwg
+    #- vong
+
+    # Clean Energy ETF
+    #- icln
+    #- qcln
+    - cnrg
+
+    # Crypto
+    - btc-usd
+    #- eth-usd
+
+    # Company Stocks
+    - aapl
+    #- tsla
+    #- msft
+
+  price_history_table_cols:
+    date        : text
+    open        : real
+    high        : real
+    low         : real
+    close       : real
+    volume      : integer
+    dividends   : integer
+    stock_splits: integer
+
+  # Model Config Parameters
+  model: PyPortfolioOptModel
+  model_db: sqlite:///../production_dbs/models.db
+  pyportfolioopt_cols:
+    model_id: integer
+    date_inputted: date
+    cts_weights: json
+    discrete_allocation: json
