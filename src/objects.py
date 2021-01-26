@@ -69,8 +69,8 @@ class Gatherer():
 
     def save_to_db(self, engine):
         for ticker, data in self.data.items():
-            dates_tuple = str(tuple(data.index))
-            engine.execute('delete from {} where date in {}'.format(ticker, dates_tuple))
+            dates_str = ', '.join([k for k in data.index])
+            engine.execute('delete from {} where date in ({})'.format(ticker, dates_str))
             data.to_sql(ticker, con = engine, if_exists = 'append')
 
     def _clean_headers(self, df):
